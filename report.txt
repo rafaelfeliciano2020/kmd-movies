@@ -1,0 +1,124 @@
+Creating test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+Operations to perform:
+  Synchronize unmigrated apps: messages, rest_framework, staticfiles
+  Apply all migrations: accounts, admin, auth, authtoken, contenttypes, movies, sessions
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+Running migrations:
+  Applying accounts.0001_initial... OK
+  Applying accounts.0002_delete_testemodel... OK
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying authtoken.0001_initial... OK
+  Applying authtoken.0002_auto_20160226_1747... OK
+  Applying authtoken.0003_tokenproxy... OK
+  Applying movies.0001_initial... OK
+  Applying movies.0002_remove_moviemodels_genres... OK
+  Applying movies.0003_moviemodels_genres... OK
+  Applying movies.0004_reviewmodels... OK
+  Applying movies.0005_reviewmodels_critic... OK
+  Applying movies.0006_commentmodels... OK
+  Applying movies.0007_auto_20210607_0125... OK
+  Applying movies.0008_commentmodels_movie... OK
+  Applying movies.0009_rename_comment_user_commentmodels_user... OK
+  Applying movies.0010_rename_spoiler_reviewmodels_spoilers... OK
+  Applying sessions.0001_initial... OK
+System check identified no issues (0 silenced).
+test_create_and_login_for_admin_account (test_api.TestAccountView) ... ok
+test_create_and_login_for_critic_account (test_api.TestAccountView) ... ok
+test_create_and_login_for_user_account (test_api.TestAccountView) ... ok
+test_create_user_already_exists (test_api.TestAccountView) ... ok
+test_wrong_credentials_do_not_login (test_api.TestAccountView) ... ok
+test_admin_or_critic_cannot_create_comment (test_api.TestCommentReviewView) ... ok
+test_create_comment_with_invalid_movie_id (test_api.TestCommentReviewView) ... ERROR
+test_user_can_change_a_comment_on_the_movie (test_api.TestCommentReviewView) ... ok
+test_user_can_create_comment (test_api.TestCommentReviewView) ... ok
+test_user_cannot_change_a_comment_on_the_movie_that_did_not_comment (test_api.TestCommentReviewView) ... ok
+test_create_review (test_api.TestCriticismReviewView) ... FAIL
+test_update_review (test_api.TestCriticismReviewView) ... ok
+test_admin_can_delete_movie (test_api.TestMovieRetrieveDestroyView) ... ok
+test_anonymous_can_filter_movies (test_api.TestMovieRetrieveDestroyView) ... ok
+test_anonymous_cannot_delete_movies (test_api.TestMovieRetrieveDestroyView) ... ok
+test_anonymous_cannot_filter_movies_with_the_invalid_movie_id (test_api.TestMovieRetrieveDestroyView) ... ok
+test_user_or_critic_cannot_delete_movies (test_api.TestMovieRetrieveDestroyView) ... ok
+test_admin_can_create_movie (test_api.TestMovieView) ... ok
+test_critic_or_user_cannot_create_movie (test_api.TestMovieView) ... ok
+test_filter_movies_with_the_filter_request (test_api.TestMovieView) ... ok
+test_genre_or_classification_cannot_repet (test_api.TestMovieView) ... ok
+test_output_format_data (test_api.TestMovieView) ... ok
+
+======================================================================
+ERROR: test_create_comment_with_invalid_movie_id (test_api.TestCommentReviewView)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/rafael-feliciano/kenzie/q4/4_kmdb/test_api.py", line 601, in test_create_comment_with_invalid_movie_id
+    comment = self.client.post(
+  File "/home/rafael-feliciano/PycharmProjects/teste1/venv/lib/python3.8/site-packages/rest_framework/test.py", line 295, in post
+    response = super().post(
+  File "/home/rafael-feliciano/PycharmProjects/teste1/venv/lib/python3.8/site-packages/rest_framework/test.py", line 209, in post
+    return self.generic('POST', path, data, content_type, **extra)
+  File "/home/rafael-feliciano/PycharmProjects/teste1/venv/lib/python3.8/site-packages/rest_framework/test.py", line 233, in generic
+    return super().generic(
+  File "/home/rafael-feliciano/PycharmProjects/teste1/venv/lib/python3.8/site-packages/django/test/client.py", line 473, in generic
+    return self.request(**r)
+  File "/home/rafael-feliciano/PycharmProjects/teste1/venv/lib/python3.8/site-packages/rest_framework/test.py", line 285, in request
+    return super().request(**kwargs)
+  File "/home/rafael-feliciano/PycharmProjects/teste1/venv/lib/python3.8/site-packages/rest_framework/test.py", line 237, in request
+    request = super().request(**kwargs)
+  File "/home/rafael-feliciano/PycharmProjects/teste1/venv/lib/python3.8/site-packages/django/test/client.py", line 719, in request
+    self.check_exception(response)
+  File "/home/rafael-feliciano/PycharmProjects/teste1/venv/lib/python3.8/site-packages/django/test/client.py", line 580, in check_exception
+    raise exc_value
+  File "/home/rafael-feliciano/PycharmProjects/teste1/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/rafael-feliciano/PycharmProjects/teste1/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/rafael-feliciano/PycharmProjects/teste1/venv/lib/python3.8/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/rafael-feliciano/PycharmProjects/teste1/venv/lib/python3.8/site-packages/django/views/generic/base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/rafael-feliciano/PycharmProjects/teste1/venv/lib/python3.8/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/rafael-feliciano/PycharmProjects/teste1/venv/lib/python3.8/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/rafael-feliciano/PycharmProjects/teste1/venv/lib/python3.8/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/rafael-feliciano/PycharmProjects/teste1/venv/lib/python3.8/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/rafael-feliciano/kenzie/q4/4_kmdb/movies/views.py", line 106, in post
+    movie = MovieModels.objects.get(id=pk)
+  File "/home/rafael-feliciano/PycharmProjects/teste1/venv/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/rafael-feliciano/PycharmProjects/teste1/venv/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+movies.models.MovieModels.DoesNotExist: MovieModels matching query does not exist.
+
+======================================================================
+FAIL: test_create_review (test_api.TestCriticismReviewView)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/rafael-feliciano/kenzie/q4/4_kmdb/test_api.py", line 1016, in test_create_review
+    self.assertEqual(response.status_code, 400)
+AssertionError: 201 != 400
+
+----------------------------------------------------------------------
+Ran 22 tests in 8.994s
+
+FAILED (failures=1, errors=1)
+Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
